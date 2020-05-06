@@ -8,6 +8,15 @@ import akka.stream.{ActorMaterializer, FlowShape, Materializer}
 import scala.concurrent.Await
 import scala.concurrent.duration._
 
+/**
+ * Sample output
+ *
+ * warmup identity last value = 1000, time = 30ms
+ * sync spin last value = 1000, time = 20002ms
+ * parallel spin last value = 1000, time = 5128ms
+ * sync identity last value = 1000, time = 2ms
+ * parallel identity last value = 1000, time = 73ms
+ */
 object StreamsConcurrency extends App {
   implicit val system = ActorSystem("StreamsConcurrency")
   implicit val materializer: Materializer = ActorMaterializer()
