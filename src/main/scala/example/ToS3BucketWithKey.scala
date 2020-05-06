@@ -21,9 +21,9 @@ object ToS3BucketWithKey extends App {
 
   val stringToJSON: Flow[String, JsValue, NotUsed] = ???
   val jsonToCompany: Flow[JsValue, Company, NotUsed] = ???
-  val makeCompanyToByteString: Flow[Company, (String, ByteString), NotUsed] = { company: Company =>
+  val makeCompanyToByteString: Flow[Company, (String, ByteString), NotUsed] = Flow[Company].map { company: Company =>
     val companyByteString: ByteString = ??? // convert the company to a bytestring somehow
-    (company.hashCode(), companyByteString)
+    (company.hashCode().toString, companyByteString)
   }
 
   val sampleSource: Source[String, NotUsed] = Source(List("4-5-6", "7-8-12", "14-9-10"))
